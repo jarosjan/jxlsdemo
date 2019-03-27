@@ -1,2 +1,2 @@
-# JXLSdemo
+# JXLS demo
 JXLS library demo
