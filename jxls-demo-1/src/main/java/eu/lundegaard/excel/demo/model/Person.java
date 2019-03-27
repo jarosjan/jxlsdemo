@@ -17,4 +17,5 @@ public class Person {
     private int phoneNumber;
     private int age;
     private int salary;
+    private boolean bonus;
 }
