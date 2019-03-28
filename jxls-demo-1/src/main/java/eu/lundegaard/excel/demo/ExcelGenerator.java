@@ -22,7 +22,8 @@ public class ExcelGenerator {
 
     public void generate() {
         final InputStream resourceStream = ClassLoader.getSystemClassLoader().getResourceAsStream(template);
-        final Context context = PoiTransformer.createInitialContext();
+//        final Context context = PoiTransformer.createInitialContext();
+        final Context context = new Context();
 
         context.putVar("persons", createData(10));
         context.putVar("bonus", 1500);

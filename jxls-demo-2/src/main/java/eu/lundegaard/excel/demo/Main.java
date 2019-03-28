@@ -6,7 +6,7 @@ package eu.lundegaard.excel.demo;
 
 public class Main {
     public static void main(String[] args) {
-        ExcelGenerator generator2 = new ExcelGenerator();
+        final ExcelGenerator generator2 = new ExcelGenerator();
         generator2.generate();
     }
 }

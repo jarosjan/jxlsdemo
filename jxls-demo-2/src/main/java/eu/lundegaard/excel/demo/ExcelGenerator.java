@@ -1,7 +1,6 @@
 package eu.lundegaard.excel.demo;
 
 
-import eu.lundegaard.excel.demo.model.Address;
 import eu.lundegaard.excel.demo.model.Person;
 import org.jxls.common.Context;
 import org.jxls.transform.poi.PoiTransformer;
@@ -11,7 +10,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Jan Jaros on 3/27/2019
@@ -21,36 +22,47 @@ public class ExcelGenerator {
     private final static String template = "secondTemplate.xlsx";
 
     public void generate() {
-        InputStream resourceStream = ClassLoader.getSystemClassLoader().getResourceAsStream(template);
+        final InputStream resourceStream = ClassLoader.getSystemClassLoader().getResourceAsStream(template);
+        final List<List<Object>> data = createGridData(createData(15));
 
-        Context context = PoiTransformer.createInitialContext();
-        context.putVar("rows", createData(15));
+        final Context context = PoiTransformer.createInitialContext();
+        context.putVar("headers", Arrays.asList("Name", "Surname", "Age", "Salary"));
+        context.putVar("data", data);
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream("autput/secondExcel.xlsx");
+            final FileOutputStream fileOutputStream = new FileOutputStream("C:\\Lundegaard\\JXLSdemo\\autput\\secondExcel.xlsx");
             JxlsHelper.getInstance().processTemplate(resourceStream, fileOutputStream, context);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private List<Person> createData(int numberOfRows) {
-        List<Person> persons = new ArrayList<>();
+    private static List<Person> createData(int numberOfRows) {
+        final List<Person> persons = new ArrayList<>();
         for (int i = 1; i < numberOfRows + 1; i++) {
-            List<Address> addresses = createAddress(i % 2);
-            Person person = new Person("Karel" + i, "Novak" + i, addresses, 65478965 + i, 25 + i);
+            Person person = new Person("Karel" + i, "Novak" + i, 25 + i, new Random().nextInt(100000));
             persons.add(person);
         }
 
         return persons;
     }
 
-    private List<Address> createAddress(int addressCount) {
-        List<Address> addresses = new ArrayList<>();
-        for (int i = 1; i < addressCount + 1; i++) {
-            Address address = new Address("Street" + i, "Praha " + i, i, 29541 + i);
-            addresses.add(address);
+    private static List<List<Object>> createGridData(List<Person> personList) {
+        final List<List<Object>> data = new ArrayList<>();
+        for(Person person : personList){
+            data.add( convertPersonsToList(person));
         }
 
-        return addresses;
+        return data;
     }
+
+    private static List<Object> convertPersonsToList(Person person){
+        final List<Object> list = new ArrayList<>();
+        list.add(person.getName());
+        list.add(person.getSurname());
+        list.add(person.getAge());
+        list.add(person.getSalary());
+
+        return list;
+    }
+
 }

@@ -17,7 +17,6 @@ import java.util.List;
 public class Person {
     private String name;
     private String surname;
-    private List<Address> address;
-    private int phoneNumber;
     private int age;
+    private int salary;
 }
