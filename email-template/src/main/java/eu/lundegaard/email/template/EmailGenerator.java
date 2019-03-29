@@ -17,7 +17,7 @@ import java.io.OutputStream;
 
 public class EmailGenerator {
 
-    private static final String greetings = "Hello awesome world. Finally I am alive!";
+    private static final String greetings = "Hello awesome world. Finally, I am alive!";
 
     public void generate() {
         final ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();

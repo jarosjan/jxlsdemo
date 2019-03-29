@@ -9,6 +9,7 @@
 <body style="text-align: center">
 <div>
     <h1 style="color: red; text-decoration: underline">Personal Info</h1>
+    <h3 th:text="${greetings}">Greetings</h3>
     Name: <span th:text="${person.getName()}">Frantisek</span><br/>
     Surname: <span th:text="${person.getSurname()}">Koudelka</span><br/>
     Age: <span th:text="${person.getAge()}">26</span><br/>
