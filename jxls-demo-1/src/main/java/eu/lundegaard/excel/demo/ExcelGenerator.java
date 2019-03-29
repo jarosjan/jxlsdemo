@@ -10,7 +10,6 @@ import java.util.Random;
 
 import eu.lundegaard.excel.demo.model.Person;
 import org.jxls.common.Context;
-import org.jxls.transform.poi.PoiTransformer;
 import org.jxls.util.JxlsHelper;
 
 /**
