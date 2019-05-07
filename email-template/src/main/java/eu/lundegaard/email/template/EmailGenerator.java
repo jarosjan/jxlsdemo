@@ -34,7 +34,7 @@ public class EmailGenerator {
         final String html = templateEngine.process("template.html", context);
 
         try {
-            final OutputStream outputStream = new FileOutputStream("C:\\Lundegaard\\JXLSdemo\\autput\\PdfExample.pdf");
+            final OutputStream outputStream = new FileOutputStream("PdfExample.pdf");
             ITextRenderer renderer = new ITextRenderer();
             renderer.setDocumentFromString(html);
             renderer.layout();
@@ -47,6 +47,6 @@ public class EmailGenerator {
     }
 
     private Person createPerson() {
-        return new Person("Karel", "Novak", 37, 40000);
+        return new Person("John", "Smith", 37, 40000);
     }
 }
